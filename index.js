@@ -32,6 +32,7 @@ async function run() {
 
         //toydb 
         const toyCollection = client.db("ToyStationdb").collection("toys");
+        const usersCollection = client.db("ToyStationdb").collection("users");
 
         //toys api get
          app.get('/toys', async(req,res)=>{
