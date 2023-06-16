@@ -76,10 +76,20 @@ async function run() {
          })
 
          // toys data with id
-            app.get('/toys/:id', async(req,res)=>{
-            const result = await toyCollection.find().toArray();
-            res.send(result);
-         })
+            // app.get('/toys/:id', async(req,res)=>{
+            // const result = await toyCollection.find().toArray();
+            // res.send(result);
+        //  })
+         //delete toy
+         app.delete('/toys/:id',async(req,res)=>{
+            const id= req.params.id;
+            const  ObjectID = require('mongodb').ObjectId;
+            console.log(id);
+            const query={_id:new  ObjectID(id)}
+            console.log(query);
+            const r = await toyCollection.deleteOne(query);
+            res.send(r);
+          })
         // Send a ping to confirm a successful connection
         await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
