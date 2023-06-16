@@ -75,11 +75,11 @@ async function run() {
             res.send(result);
          })
 
-         // toys data with id
-            // app.get('/toys/:id', async(req,res)=>{
-            // const result = await toyCollection.find().toArray();
-            // res.send(result);
-        //  })
+        //  toys data with id
+            app.get('/toys', async(req,res)=>{
+            const result = await toyCollection.find().toArray();
+            res.send(result);
+         })
          //delete toy
          app.delete('/toys/:id',async(req,res)=>{
             const id= req.params.id;
