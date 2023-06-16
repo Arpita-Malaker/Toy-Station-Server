@@ -54,6 +54,19 @@ async function run() {
         //     const result = await toyCollection.find().toArray();
         //     res.send(result);
         //  })
+
+        //sens toy data in server
+        app.post('/toys', async (req, res) => {
+
+            const newItem = req.body;
+            const result = await toyCollection.insertOne(newItem);
+            res.send(result);
+          })
+      
+
+
+
+        //get toy spi
          app.get('/toys', async(req,res)=>{
             // const cursor = serviceCollection.find(query, options);
             // const result = await cursor.toArray();
