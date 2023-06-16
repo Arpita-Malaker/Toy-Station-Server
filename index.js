@@ -34,9 +34,31 @@ async function run() {
         const toyCollection = client.db("ToyStationdb").collection("toys");
         const usersCollection = client.db("ToyStationdb").collection("users");
 
+        //post user api
+        app.post('/users',  async (req, res) => {
+
+            const user = req.body;
+            const query = { email: user.email }
+            const existingUser = await usersCollection.findOne(query)
+      
+            if (existingUser) {
+              return res.send({ message: "already exis" })
+            }
+            const result = await usersCollection.insertOne(user)
+            res.send(result);
+      
+          })
+
         //toys api get
+        //  app.get('/toys', async(req,res)=>{
+        //     const result = await toyCollection.find().toArray();
+        //     res.send(result);
+        //  })
          app.get('/toys', async(req,res)=>{
-            const result = await toyCollection.find().toArray();
+            // const cursor = serviceCollection.find(query, options);
+            // const result = await cursor.toArray();
+            const cursor= toyCollection.find().limit(8);
+            const result = await cursor.toArray();
             res.send(result);
          })
         // Send a ping to confirm a successful connection
