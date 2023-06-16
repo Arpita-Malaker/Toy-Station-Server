@@ -57,7 +57,7 @@ async function run() {
          app.get('/toys', async(req,res)=>{
             // const cursor = serviceCollection.find(query, options);
             // const result = await cursor.toArray();
-            const cursor= toyCollection.find().limit(5);
+            const cursor= toyCollection.find().limit(20);
             const result = await cursor.toArray();
             res.send(result);
          })
